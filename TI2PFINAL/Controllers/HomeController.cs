@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace IdentitySample.Controllers
+namespace TI2PFINAL.Controllers
 {
     public class HomeController : Controller
     {

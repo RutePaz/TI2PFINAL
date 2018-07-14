@@ -8,14 +8,14 @@ namespace TI2PFINAL.Migrations
     using System.Linq;
     using TI2PFINAL.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TI2PFINAL.Models.MusicalDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<TI2PFINAL.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(TI2PFINAL.Models.MusicalDB context)
+        protected override void Seed(TI2PFINAL.Models.ApplicationDbContext context)
         {
             //*********************************************************************
             try

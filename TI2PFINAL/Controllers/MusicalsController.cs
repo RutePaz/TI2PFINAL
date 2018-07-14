@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IdentitySample.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,7 +14,7 @@ namespace TI2PFINAL.Controllers
 {
     public class MusicalsController : Controller
     {
-        private MusicalDB db = new MusicalDB();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Musicals
         /// <summary>

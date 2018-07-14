@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentitySample.Models
+namespace TI2PFINAL.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

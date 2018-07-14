@@ -6,8 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TI2PFINAL.Models;
 
-namespace IdentitySample.Controllers
+namespace TI2PFINAL.Controllers
 {
     [Authorize]
     public class AccountController : Controller
