@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace TI2PFINAL
+namespace IdentitySample
 {
     public class RouteConfig
     {

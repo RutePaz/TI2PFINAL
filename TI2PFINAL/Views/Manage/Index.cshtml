@@ -1,87 +1,77 @@
-﻿@model TI2PFINAL.Models.IndexViewModel
+﻿@model IdentitySample.Models.IndexViewModel
 @{
-    ViewBag.Title = "Gerenciar";
+    ViewBag.Title = "Manage your account";
 }
 
 <h2>@ViewBag.Title.</h2>
-
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Alterar configurações de sua conta</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Senha:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword") 
+                : Html.ActionLink("Pick a password", "SetPassword"))
+        </p>
+        <p>
+            Phone Number: @(Model.PhoneNumber ?? "None") [
+            @if (Model.PhoneNumber != null)
             {
-                @Html.ActionLink("Alterar sua senha", "ChangePassword")
+                @Html.ActionLink("Change", "AddPhoneNumber")
+                @: &nbsp;|&nbsp;
+                @Html.ActionLink("Remove", "RemovePhoneNumber")
             }
             else
             {
-                @Html.ActionLink("Criar", "SetPassword")
+                @Html.ActionLink("Add", "AddPhoneNumber")
             }
             ]
-        </dd>
-        <dt>Logins externos:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Gerenciar", "ManageLogins") ]
-        </dd>
-        @*
-            Os Números de Telefone podem ser usados como um segundo fator de verificação em um sistema de autenticação de dois fatores.
-             
-             Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artigo</a>
-                        para obter detalhes sobre a configuração deste aplicativo ASP.NET para dar suporte a uma autenticação de dois fatores usando SMS.
-             
-             Remova a marca de comentário dos blocos a seguir após configurar a autenticação de dois fatores
-        *@
-        @*  
-            <dt>Número de telefone:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remover" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        <dt>Autenticação de dois fatores:</dt>
-        <dd>
-            <p>
-                Não há provedores de autenticação de dois fatores configurados. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artigo</a>
-                para obter detalhes sobre como configurar este aplicativo ASP.NET para dar suporte à autenticação de dois fatores.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Ativado
-                        <input type="submit" value="Desativar" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Desativado
-                        <input type="submit" value="Ativar" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+        </p>
+        <p>
+            External Logins: @Model.Logins.Count
+            @Html.ActionLink("[Manage]", "ManageLogins")
+        </p>
+        @if (Model.TwoFactor)
+        {
+            using (Html.BeginForm("DisableTFA", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                 @Html.AntiForgeryToken()
+                 <p>
+                     Two factor is currently enabled:
+                     <input type="submit" value="Disable" class="btn btn-default"/>
+                 </p>
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("EnableTFA", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    Two factor is currently disabled:
+                    <input type="submit" value="Enable" class="btn btn-default"/>
+                </p>
+            }
+        }
+        @if (Model.BrowserRemembered)
+        {
+            using (Html.BeginForm("ForgetBrowser", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    Browser is curently remembered for two factor:
+                    <input type="submit" value="Forget Browser" class="btn btn-default" />
+                </p>
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("RememberBrowser", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    Browser is curently not remembered for two factor:
+                    <input type="submit" value="Remember Browser" class="btn btn-default"/>
+                </p>
+            }
+        }
+    </div>
 </div>

@@ -1,8 +1,6 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(TI2PFINAL.Startup))]
-namespace TI2PFINAL
+namespace IdentitySample
 {
     public partial class Startup
     {
