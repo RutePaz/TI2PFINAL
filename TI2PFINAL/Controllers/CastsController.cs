@@ -140,7 +140,7 @@ namespace TI2PFINAL.Controllers
                 }
                 catch (Exception){
                     //caso haja um erro deve ser enviada uma mensagem para o utilizador 
-                    ModelState.AddModelError("", string.Format("An error occurred with the addition of the musical {0}", cast.Name));
+                    ModelState.AddModelError("", string.Format("An error occurred with the addition of the actor {0}", cast.Name));
 
                 }
 
