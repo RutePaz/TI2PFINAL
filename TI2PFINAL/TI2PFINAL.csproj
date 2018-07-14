@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CastMusicalsController.cs" />
     <Compile Include="Controllers\CastsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -463,6 +464,11 @@
     <Content Include="Views\Casts\Details.cshtml" />
     <Content Include="Views\Casts\Edit.cshtml" />
     <Content Include="Views\Casts\Index.cshtml" />
+    <Content Include="Views\CastMusicals\Create.cshtml" />
+    <Content Include="Views\CastMusicals\Delete.cshtml" />
+    <Content Include="Views\CastMusicals\Details.cshtml" />
+    <Content Include="Views\CastMusicals\Edit.cshtml" />
+    <Content Include="Views\CastMusicals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
