@@ -23,11 +23,23 @@ namespace TI2PFINAL.Models
         [Required(ErrorMessage = " {0} required field!")]
         public string Title { get; set; }
 
+        [Required(ErrorMessage = " {0} required field!")]
         public string Synopsis { get; set; }
+
+        [Required(ErrorMessage = " {0} required field!")]
         public string Director { get; set; }
+
+        [Required(ErrorMessage = " {0} required field!")]
         public string Duration { get; set; }
+
+        //Se o atributo OpeningNight fosse Datetime, ter-se-ia que colocar esta restrição:
+        // [Required, Column(TypeName = "Date"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        //de modo a que o tipo de data apresentado fosse dd/MM/yyyy, ou seja sem horas e minutos
         public string OpeningNight { get; set; }
+
         public string Ticket { get; set; }
+
+ 
         public string Poster { get; set; }
 
         // referência aos atores que um musical apresenta

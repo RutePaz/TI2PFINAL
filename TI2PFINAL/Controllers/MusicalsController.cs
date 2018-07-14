@@ -71,12 +71,14 @@ namespace TI2PFINAL.Controllers
             }
             //guarda o ID do novo Musical
             musical.ID_Musical = idNewMusical;
+            string imageName = "Musical_" + idNewMusical + ".jpg";
             string path="";
             //validar se a imagem foi fornecida 
             if (uploadPoster != null)
             {
                 //verificar o tipo de ficheiro inserido
-                path = Path.Combine(Server.MapPath("~/images/"));
+                path = Path.Combine(Server.MapPath("~/images/"), imageName);
+                musical.Poster = imageName;
             }
             else {
                 //quando não foi fornecida nenhuma imagem, gera um erro 
@@ -128,34 +130,43 @@ namespace TI2PFINAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID_Musical,Title,Synopsis,Director,Duration,OpeningNight,Ticket")] Musical musical, HttpPostedFileBase uploadPoster)
         {
-            string path = "";
-            //validar se a imagem foi fornecida 
-            if (uploadPoster != null)
+            string newName = "";
+            string oldName = "";
+            if (ModelState.IsValid)
             {
-                //verificar o tipo de ficheiro inserido
-                path = Path.Combine(Server.MapPath("~/images/"));
-            }
-            else
-            {
-                //quando não foi fornecida nenhuma imagem, gera um erro 
-                ModelState.AddModelError("", "Please, upload an image for the Musical");
-                return View(musical);
-            }
-            try
-            {
-                if (ModelState.IsValid)
+                try
                 {
-                    //atualiza os dados do Musical ne estrutura de dados em memória
+                    //se foi fornecida uma nova imagem, preparam-se os dados para efetuar a alteração
+                    if (uploadPoster != null)
+                    {
+                        //preservar o nome antigo, para depois remover do disco do servidor
+                        oldName = musical.Poster;
+                        //para o novo nome do ficheiro, adiciona-se o termo gerado pelo timestamp
+                        //e a extensão do ficheiro é obtida automaticamente em vez de ser escrita de forma explícita
+                        newName = "Musical_" + musical.ID_Musical + DateTime.Now.ToString("yyyyMMdd_hhmmss") + Path.GetExtension(uploadPoster.FileName).ToLower();
+                        //atualizar os dados do Musical com o novo nome
+                        musical.Poster = newName;
+                        //guardar a nova imagem no disco rígido
+                        uploadPoster.SaveAs(Path.Combine(Server.MapPath("~/images/"), newName));
+                    }
+                    else {
+                        //QUANDDO NAO SE ATUALIZA A IMAGEM MANTÉM-SE A MESMA QUE ESTAVA 
+                        string path = Path.Combine(Server.MapPath("~/images/"), oldName);
+                        oldName = musical.Poster;
+                    }
+                    //guardar os dados do Musical
                     db.Entry(musical).State = EntityState.Modified;
-                    //Commit
+                    //efetuar 'Commit'
                     db.SaveChanges();
                     return RedirectToAction("Index");
+
                 }
-                return View(musical);
-            }
-            catch {
-                //caso haja um erro deve ser enviada uma mensagem para o utilizador 
-                ModelState.AddModelError("", string.Format("An error occurred with the addition of the musical {0}", musical.Title));
+                catch (Exception)
+                {
+                    //caso haja um erro deve ser enviada uma mensagem para o utilizador 
+                    ModelState.AddModelError("", string.Format("An error occurred with the addition of the musical {0}", musical.Title));
+                }
+
 
             }
             return View(musical);
