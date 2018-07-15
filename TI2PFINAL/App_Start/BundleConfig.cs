@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace IdentitySample
+namespace TI2FINAL
 {
     public class BundleConfig
     {

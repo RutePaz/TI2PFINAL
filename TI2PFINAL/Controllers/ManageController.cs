@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using IdentitySample.Controllers;
+using TI2FINAL.Controllers;
 using TI2PFINAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

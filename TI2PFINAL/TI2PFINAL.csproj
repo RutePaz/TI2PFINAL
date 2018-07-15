@@ -208,7 +208,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Musical.cs" />
-    <Compile Include="Models\MusicalDB.cs" />
     <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Soundtrack.cs" />
     <Compile Include="Models\User.cs" />

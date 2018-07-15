@@ -24,12 +24,12 @@ namespace TI2PFINAL.Migrations
                 //*********************************************************************
                 // add Users
                 var user = new List<User> {
-                      new User {ID_User=1,Username="Lilette Thorne",Email="l.thorne@gmail.com"},
-                      new User {ID_User=2,Username="Robert Strickland",Email="robertms@hotmail.com"},
-                      new User {ID_User=3,Username="Simon Evers",Email="simon_evers@gamil.com"},
-                      new User {ID_User=4,Username="Josh Wolf",Email="josh.wolf@gmail.com"},
-                      new User {ID_User=5,Username="Annabelle Hallowell",Email="annahallowell@hotmail.com"},
-                      new User {ID_User=6,Username="Jeremy Saunders",Email="jeremy.p.saunders@gmail.com"}
+                      new User {ID_User=1,Username="LiletteThorne",Email="l.thorne@gmail.com"},
+                      new User {ID_User=2,Username="RobertStrickland",Email="robertms@hotmail.com"},
+                      new User {ID_User=3,Username="SimonEvers",Email="simon_evers@gamil.com"},
+                      new User {ID_User=4,Username="JoshWolf",Email="josh.wolf@gmail.com"},
+                      new User {ID_User=5,Username="AnnabelleHallowell",Email="annahallowell@hotmail.com"},
+                      new User {ID_User=6,Username="JeremySaunders",Email="jeremy.p.saunders@gmail.com"}
 
                     };
             

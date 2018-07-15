@@ -5,7 +5,7 @@ using Microsoft.Owin.Security.Cookies;
 using TI2PFINAL.Models;
 using Owin;
 using System;
-using IdentitySample.Models;
+using TI2FINAL.Models;
 
 namespace TI2PFINAL
 {
